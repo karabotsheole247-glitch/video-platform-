@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StreamBox</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0f;
+            color: white;
+        }
+
+        header {
+            background: #111118;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #e50914;
+        }
+
+        .hero {
+            min-height: 450px;
+            padding: 100px 6%;
+            background:
+                linear-gradient(90deg, #0b0b0f 20%, transparent),
+                linear-gradient(0deg, #0b0b0f, transparent);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            border: none;
+            background: #e50914;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #b20710;
+        }
+
+        section {
+            padding: 30px 6%;
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+        }
+
+        .episodes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .episode {
+            background: #17171f;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .episode:hover {
+            transform: translateY(-4px);
+        }
+
+        .thumbnail {
+            height: 130px;
+            background: linear-gradient(135deg, #333, #111);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .episode-info {
+            padding: 15px;
+        }
+
+        .episode-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .episode-info p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .locked {
+            color: #ffcc00;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .player {
+            display: none;
+            padding: 40px 6%;
+            background: #050507;
+        }
+
+        .player video {
+            width: 100%;
+            max-height: 550px;
+            background: black;
+        }
+
+        .subscription {
+            background: #15151c;
+            margin: 30px 6%;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .subscription h2 {
+            margin-bottom: 12px;
+        }
+
+        .subscription p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            nav a {
+                margin-left: 8px;
+            }
+
+            .subscription {
+                margin: 20px;
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Stream<span>Box</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#episodes">Episodes</a>
+        <a href="#subscribe">Subscribe</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>Your Stories. Your Screen.</h1>
+
+            <p>
+                Watch exclusive shows, episodes and original content
+                available on StreamBox.
+            </p>
+
+            <a href="#episodes" class="button">
+                Explore Episodes
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- VIDEO PLAYER -->
+    <section class="player" id="videoPlayer">
+
+        <h2 id="videoTitle">Episode</h2>
+
+        <br>
+
+        <video id="video" controls>
+            <source
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                type="video/mp4">
+            Your browser does not support video playback.
+        </video>
+
+    </section>
+
+
+    <!-- EPISODES -->
+    <section id="episodes">
+
+        <h2>Latest Episodes</h2>
+
+        <div class="episodes">
+
+            <!-- EPISODE 1 -->
+            <div class="episode">
+
+                <div class="thumbnail">
+                    🎬
+                </div>
+
+                <div class="episode-info">
+
+                    <h3>Episode 1 — The Beginning</h3>
+
+                    <p>
+                        Season 1 • Episode 1
+                    </p>
+
+                    <div class="locked">
+                        🔒 Subscribers Only
+                    </div>
+
+                    <button
+                        class="button"
+                        onclick="watchEpisode('Episode 1 — The Beginning')">
+
+                        Watch Episode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EPISODE 2 -->
+            <div class="episode">
+
+                <div class="thumbnail">
+                    🎥
+                </div>
+
+                <div class="episode-info">
+
+                    <h3>Episode 2 — The Secret</h3>
+
+                    <p>
+                        Season 1 • Episode 2
+                    </p>
+
+                    <div class="locked">
+                        🔒 Subscribers Only
+                    </div>
+
+                    <button
+                        class="button"
+                        onclick="watchEpisode('Episode 2 — The Secret')">
+
+                        Watch Episode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EPISODE 3 -->
+            <div class="episode">
+
+                <div class="thumbnail">
+                    📺
+                </div>
+
+                <div class="episode-info">
+
+                    <h3>Episode 3 — The Chase</h3>
+
+                    <p>
+                        Season 1 • Episode 3
+                    </p>
+
+                    <div class="locked">
+                        🔒 Subscribers Only
+                    </div>
+
+                    <button
+                        class="button"
+                        onclick="watchEpisode('Episode 3 — The Chase')">
+
+                        Watch Episode
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUBSCRIPTION -->
+    <section class="subscription" id="subscribe">
+
+        <h2>Unlock All Episodes</h2>
+
+        <p>
+            Become a StreamBox subscriber and watch exclusive episodes.
+        </p>
+
+        <button
+            class="button"
+            onclick="subscribe()">
+
+            Subscribe Now
+
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 StreamBox. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    // Demo subscription status
+    let subscribed = false;
+
+
+    function subscribe() {
+
+        subscribed = true;
+
+        alert(
+            "Demo subscription activated! You can now watch the episodes."
+        );
+
+    }
+
+
+    function watchEpisode(title) {
+
+        if (!subscribed) {
+
+            alert(
+                "🔒 This episode is for subscribers only. Please subscribe first."
+            );
+
+            document
+                .getElementById("subscribe")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            return;
+        }
+
+
+        document.getElementById("videoTitle").innerText = title;
+
+        const player =
+            document.getElementById("videoPlayer");
+
+        player.style.display = "block";
+
+        player.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
